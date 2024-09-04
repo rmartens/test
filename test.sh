@@ -20,21 +20,19 @@ echo "BUILD_NUMBER=$BUILD_NUMBER"
 
 send_update()
 {
-curl --insecure -X POST -H 'Content-type: application/json' \
--d ''"$( cat <<EOF
+    curl --insecure -X POST -H 'Content-type: application/json' \
+    -d @- ${SLACK_WEB_HOOK} <<EOF
 {
   "text": "Test Ended: DG1000 ${TEC_VER_DOT} (${BUILD_NUMBER})"
 }
 EOF
-)"'' \
-${SLACK_WEB_HOOK}
 }
 
 
 main()
 {
     echo "main"
-    send_update()
+    send_update
 }
 
 main
