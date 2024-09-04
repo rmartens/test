@@ -31,8 +31,13 @@ EOF
 
 main()
 {
-    echo "main"
-    send_update
+    # Check if SLACK_WEB_HOOK is set and not empty
+    if [ -z "${SLACK_WEB_HOOK}" ]; then
+        echo "Warning: SLACK_WEB_HOOK is not set or is empty. Skipping Slack update."
+    else
+        # SLACK_WEB_HOOK exists, so call send_update
+        send_update
+    fi
 }
 
 main
