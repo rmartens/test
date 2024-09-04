@@ -15,11 +15,23 @@ echo "DIR=$DIR"
 # add shared functions
 # source $DIR/sharedFunctions
 
+send_update()
+{
+curl --insecure -X POST -H 'Content-type: application/json' \
+-d ''"$( cat <<EOF
+{
+  "text": "Test Ended: DG1000 ${TEC_VER_DOT} (${BUILD_NUMBER})"
+}
+EOF
+)"'' \
+${SLACK_WEB_HOOK}
+}
+
 
 main()
 {
     echo "main"
-
+    send_update()
 }
 
 main
