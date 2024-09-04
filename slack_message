@@ -1,0 +1,19 @@
+#!/bin/bash
+
+# Check if all required variables and argument are present
+if [ -z "$SLACK_WEB_HOOK" ] || [ -z "$TEC_VER_DOT" ] || [ -z "$BUILD_NUMBER" ] || [ -z "$1" ]; then
+    echo "Error: Missing required variables or message argument."
+    echo "Usage: $0 <message>"
+    echo "Make sure SLACK_WEB_HOOK, TEC_VER_DOT, and BUILD_NUMBER are set."
+    exit 0
+fi
+
+# The message is now the first argument to the script
+MESSAGE="$1"
+
+curl --insecure -X POST -H 'Content-type: application/json' \
+-d @- "${SLACK_WEB_HOOK}" <<EOF
+{
+  "text": "${MESSAGE}: DG1000 ${TEC_VER_DOT} (${BUILD_NUMBER})"
+}
+EOF

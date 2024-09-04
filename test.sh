@@ -18,26 +18,9 @@ echo "BUILD_NUMBER=$BUILD_NUMBER"
 # add shared functions
 # source $DIR/sharedFunctions
 
-send_update()
-{
-    curl --insecure -X POST -H 'Content-type: application/json' \
-    -d @- ${SLACK_WEB_HOOK} <<EOF
-{
-  "text": "Test Ended: DG1000 ${TEC_VER_DOT} (${BUILD_NUMBER})"
-}
-EOF
-}
-
-
 main()
 {
-    # Check if SLACK_WEB_HOOK is set and not empty
-    if [ -z "${SLACK_WEB_HOOK}" ]; then
-        echo "Warning: SLACK_WEB_HOOK is not set or is empty. Skipping Slack update."
-    else
-        # SLACK_WEB_HOOK exists, so call send_update
-        send_update
-    fi
+    ./slack_message "Test Ended"
 }
 
 main
