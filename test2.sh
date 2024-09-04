@@ -9,8 +9,8 @@ echo "******************************************************"
 echo "************* START $0 **************************"
 
 # get location of script file before starting
-DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
-echo "DIR=$DIR"
+#DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
+#echo "DIR=$DIR"
 
 # add shared functions
 # source $DIR/sharedFunctions
